@@ -2,8 +2,10 @@ import logging
 import os
 
 from dotenv import load_dotenv
-from notion_client import Client
+# from notion_client import Client
 from retrying import retry
+from notion_client import Client
+self.client = Client(auth="你的 Notion Token")
 
 from notionify.notion_utils import extract_page_id
 
@@ -84,7 +86,7 @@ class NotionHelper:
         has_more = True
         start_cursor = None
         while has_more:
-            response = self.client.databases.query(
+            response = self.client.databases.query_database(
                 database_id=database_id,
                 start_cursor=start_cursor,
                 page_size=100,
